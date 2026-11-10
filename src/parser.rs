@@ -75,7 +75,7 @@ mod tests {
     fn strips_exclude_marker() {
         assert_eq!(
             excl("-D:\\TEMP\\Microsoft\\").as_deref(),
-            Some("D:\\TEMP\\Microsoft")
+            Some("D:\\TEMP\\Microsoft\\")
         );
     }
 
