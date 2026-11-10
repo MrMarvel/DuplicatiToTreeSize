@@ -32,13 +32,8 @@ pub fn parse_filter_line(raw: &str) -> ParsedLine {
         return ParsedLine::IgnoredInclude;
     }
 
-    let p = if rest.len() > 3 && rest.ends_with('\\') {
-        &rest[..rest.len() - 1]
-    } else {
-        rest
-    };
-
-    ParsedLine::Exclude(p.to_string())
+    // Возвращаем паттерн как есть, без удаления '\'
+    ParsedLine::Exclude(rest.to_string())
 }
 
 pub fn read_patterns(path: &Path) -> Result<Vec<String>> {

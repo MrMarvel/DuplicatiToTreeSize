@@ -25,15 +25,7 @@ pub struct Args {
 
     /// Не помечать элементы как <Negated>True</Negated>
     #[arg(long)]
-    pub no_negated: bool,
-
-    /// Operator для паттернов, содержащих '*' или '?'
-    #[arg(long, default_value_t = 8, value_name = "N")]
-    pub op_wildcard: u32,
-
-    /// Operator для точных путей
-    #[arg(long, default_value_t = 10, value_name = "N")]
-    pub op_exact: u32,
+    pub invert_negating: bool,
 }
 
 impl Args {

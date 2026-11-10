@@ -1,4 +1,5 @@
 mod cli;
+mod convert;
 mod parser;
 mod tree_size;
 
@@ -20,17 +21,12 @@ fn run() -> Result<()> {
         eprintln!("Предупреждение: во входном файле нет валидных паттернов");
     }
 
-    tree_size::write_xml(
-        &output,
-        &patterns,
-        !args.no_negated,
-        args.op_wildcard,
-        args.op_exact,
-    )?;
+    let patterns_tree_size = convert::to_tree_size_patterns(&patterns);
+    tree_size::write_xml(&output, &patterns_tree_size, args.invert_negating)?;
 
     eprintln!(
         "Готово: {} паттернов → {}",
-        patterns.len(),
+        patterns_tree_size.len(),
         output.display()
     );
     Ok(())
